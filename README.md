@@ -30,9 +30,9 @@ $ docker run -d -p3000:3000 skx/httpd
 
 ## Volumes
 
-You can serve a local directory by bind-mounting your root directory to `/app`,
+You can serve a local directory by bind-mounting your root directory to `/docs`,
 like so:
 
 ```
-$ docker run -d -v /var/www/html:/app -p3000:3000 skx/httpd
+$ docker run -d -v /var/www/html:/docs -p3000:3000 skx/httpd
 ```
