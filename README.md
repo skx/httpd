@@ -2,34 +2,37 @@
 
 This is a trivial HTTP-server, which can serve static-files.
 
+You'd probably prefer to look at my toolbox which contains a `httpd` server:
 
-## Rationale
-
-Most of the time I need to serve static-content I would use Python, but sometimes it is not available.  (Where it is serving is as simple as this `python -m SimpleHTTPServer 3000`.)
+* [https://github.com/skx/sysbox](https://github.com/skx/sysbox)
 
 
 ## Installation
 
-To install this just run:
+To install this from source please run:
 
     $ go get github.com/skx/httpd
 
 
-## Usage
+## Docker
 
-Run with no arguments to serve the current directory, add `-help` for other options.
+There is a Dockerfile included within the repository, you can build the image via:
 
-## Limitations
+```
+$ docker build -t skx/httpd .
+```
 
-This is sufficient to meet my needs, but it should be noted that this is not a serious project, and it has many obvious limitations:
+To launch it run:
 
-* This is a trivial toy.
-* It will not scale.
-* It does not handle malicious clients.
-  * (slowlaris attacks, specifically, due to the lack of timeouts.)
-* It does not log the HTTP response-code sent back to clients.
+```
+$ docker run -d -p3000:3000 skx/httpd
+```
 
+## Volumes
 
+You can serve a local directory by bind-mounting your root directory to `/app`,
+like so:
 
-Steve
---
+```
+$ docker run -d -v /var/www/html:/app -p3000:3000 skx/httpd
+```
