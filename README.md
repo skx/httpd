@@ -36,3 +36,8 @@ like so:
 ```
 $ docker run -d -v /var/www/html:/docs -p3000:3000 skx/httpd
 ```
+
+
+## Pipeline
+
+Commits to this repository will become live, when pushed.
