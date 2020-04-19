@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 )
 
 func main() {
@@ -15,7 +16,6 @@ func main() {
 	//
 	path := flag.String("path", ".", "The directory to use as the HTTP root directory")
 	addr := flag.String("host", "127.0.0.1", "The host to bind upon (use 0.0.0.0 for remote access)")
-	port := flag.Int("port", 3000, "The port to listen upon")
 
 	flag.Parse()
 
@@ -27,9 +27,17 @@ func main() {
 	http.Handle("/", fs)
 
 	//
+	// Port magic
+	//
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "3000"
+	}
+
+	//
 	// Build up the listen addres.
 	//
-	listen := fmt.Sprintf("%s:%d", *addr, *port)
+	listen := fmt.Sprintf("%s:%s", *addr, port)
 
 	//
 	// Log our start, and begin serving.
