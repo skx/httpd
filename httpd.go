@@ -14,7 +14,7 @@ func main() {
 	//
 	// Parse command-line flags.
 	//
-	path := flag.String("path", ".", "The directory to use as the HTTP root directory")
+	path := flag.String("path", "/", "The directory to use as the HTTP root directory")
 	addr := flag.String("host", "127.0.0.1", "The host to bind upon (use 0.0.0.0 for remote access)")
 
 	flag.Parse()
