@@ -7,5 +7,10 @@
     "scalpel"
   ],
   "repository": "https://github.com/skx/httpd",
-  "image": "heroku/go"
+  "image": "heroku/go",
+  "buildpacks": [
+    {
+      "url": "heroku/ruby"
+    }
+  ]
 }
