@@ -1,16 +1,11 @@
 {
   "name": "httpd",
   "description": "Simple golang httpd.",
-  "keywords": [
-    "productivity",
-    "HTML5",
-    "scalpel"
-  ],
   "repository": "https://github.com/skx/httpd",
   "image": "heroku/go",
   "buildpacks": [
     {
-      "url": "heroku/ruby"
+      "url": "heroku/go"
     }
   ]
 }
