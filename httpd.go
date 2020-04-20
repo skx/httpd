@@ -4,6 +4,7 @@ package main
 import (
 	"flag"
 	"fmt"
+	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
@@ -14,7 +15,7 @@ func main() {
 	//
 	// Parse command-line flags.
 	//
-	path := flag.String("path", "/", "The directory to use as the HTTP root directory")
+	path := flag.String("path", "/tmp/", "The directory to use as the HTTP root directory")
 	addr := flag.String("host", "127.0.0.1", "The host to bind upon (use 0.0.0.0 for remote access)")
 
 	flag.Parse()
@@ -38,6 +39,16 @@ func main() {
 	// Build up the listen addres.
 	//
 	listen := fmt.Sprintf("%s:%s", *addr, port)
+
+	//
+	// Write to /tmp/index.html
+	//
+	d1 := []byte("HTTP server skx/httpd\n")
+	err := ioutil.WriteFile("/tmp/index.html", d1, 0644)
+	if err != nil {
+		log.Printf("Failed to write to /tmp:%s\n", err.Error())
+		return
+	}
 
 	//
 	// Log our start, and begin serving.
